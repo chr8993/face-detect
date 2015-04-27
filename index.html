@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<style>
+			#container
+			{
+				width: 500px;
+				height: 420px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container"></div>
+	</body>
+	<script src="src/face.js"></script>
+	<script>
+		var element = document.getElementById('container');
+		var detector = new FaceDetect(element);
+	</script>
+</html>
