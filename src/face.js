@@ -76,6 +76,8 @@ var FaceDetect = function(el)
 		var p = pdata.data;
 		//turn into grayscale
 		//0 = r, 1 = g, 2 = b, 3 = a
+		var pixels = [];
+		var a = 0; 
 		for(var i = 0; i < p.length; i+=4)
 		{
 			var r = p[i];
@@ -84,12 +86,14 @@ var FaceDetect = function(el)
 			//lumninace
 			var gray = (r*.3)+(g*.59)+(b*.11);
 			p[i] = p[i+1] = p[i+2] = gray;
+			pixels[a] = gray;
+			a++;
 		}
 		pdata.data = p;
 		ctx.putImageData(pdata,0,0);
 		if(frames % 50 == 0)
 		{
-			detect(p);
+			detect(pixels);
 		}
 		frames++;
 	}
@@ -99,6 +103,7 @@ var FaceDetect = function(el)
 	{
 		//todo:
 		//calculate integral image
+		var d = calcII(data);
 		//use web workers?
 		
 	}
@@ -113,6 +118,31 @@ var FaceDetect = function(el)
 
 	//calculate integral image
 	function calcII(data)
+	{
+		var d = {
+			ii: [],
+			ii2: []
+		};
+		var h = _height + 1;
+		var w = _width + 1;
+
+		for(var a = 0; a < w; a++) {
+			d.ii[a] = d.ii2[a] = 0;
+		}
+
+		//data represented as single array
+		for(var i = 1; i < (h-1); i++) {
+			//loop through h pixels
+			for(var a = 0; a < (w-1); a++) {
+				//loop through w pixels
+
+			}	
+		}
+		return d;
+	}
+
+	//detect subfeature
+	function detectFeatures()
 	{
 
 	}
